@@ -1,0 +1,15 @@
+
+{
+  "name": "image-manipulation",
+  "version": "1.0.0",
+  "description": "A simple tool to scale images in a directory using sharp.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}
