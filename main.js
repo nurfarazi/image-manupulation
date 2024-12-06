@@ -30,16 +30,40 @@ function scaleImagesInDirectory(inputDir, outputDir, scaleFactor) {
         files.forEach(file => {
             const inputImagePath = path.join(inputDir, file);
             const outputImagePath = path.join(outputDir, file);
-            scaleImage(inputImagePath, outputImagePath, scaleFactor);
+            fs.stat(inputImagePath, (err, stats) => {
+                if (err) {
+                    console.error(`Error getting file stats: ${err}`);
+                    return;
+                }
+                if (stats.size > 44 * 1024 * 1024) { // 44 megabytes
+                    scaleImage(inputImagePath, outputImagePath, scaleFactor);
+                } else {
+                    console.log(`Skipping ${file} as it is smaller than 44MB`);
+                }
+            });
         });
     });
 }
 
+function getScaleFactor(scaleFactor) {
+    const factor = parseFloat(scaleFactor);
+    if (isNaN(factor) || factor <= 0) {
+        throw new Error("Invalid scale factor. It must be a positive number.");
+    }
+    return factor;
+}
+
 if (process.argv.length !== 5) {
     console.log("Usage: node main.js <input_directory> <output_directory> <scale_factor>");
+    console.log("scale_factor: positive number for scaling factor");
 } else {
     const inputDir = process.argv[2];
     const outputDir = process.argv[3];
-    const scaleFactor = parseFloat(process.argv[4]);
-    scaleImagesInDirectory(inputDir, outputDir, scaleFactor);
+    const scaleFactor = process.argv[4];
+    try {
+        const factor = getScaleFactor(scaleFactor);
+        scaleImagesInDirectory(inputDir, outputDir, factor);
+    } catch (err) {
+        console.error(err.message);
+    }
 }

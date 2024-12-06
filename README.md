@@ -1,6 +1,6 @@
 # Image Manipulation
 
-This project allows you to scale images in a directory using the `sharp` library.
+This project allows you to scale and convert images in a directory using the `sharp` library.
 
 ## Installation
 
@@ -17,12 +17,9 @@ This project allows you to scale images in a directory using the `sharp` library
 
 ## Usage
 
-To scale images in a directory, run the following command:
+To scale and convert images in a directory, run the following command:
 ```sh
-node main.js <input_directory> <output_directory> <scale_factor>
-```
+node main.js <input_directory> <output_directory> <scale_factor> <output_format>
 
-For example:
-```sh
-node main.js input output 0.5
-```
+
+node main.js input output 0.5 jpg

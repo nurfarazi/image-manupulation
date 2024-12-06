@@ -1,5 +1,7 @@
 # Ignore all files in the Kitty directory
 Kitty/
+highimg/*
+sdImg/*
 
 # Typical files to ignore for applications
 *.log
