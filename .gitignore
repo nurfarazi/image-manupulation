@@ -2,6 +2,9 @@
 Kitty/
 highimg/*
 sdImg/*
+input/*
+output/*
+alreadyUp/*
 
 # Typical files to ignore for applications
 *.log

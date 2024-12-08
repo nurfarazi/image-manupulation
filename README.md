@@ -21,5 +21,6 @@ To scale and convert images in a directory, run the following command:
 ```sh
 node main.js <input_directory> <output_directory> <scale_factor> <output_format>
 
-
-node main.js input output 0.5 jpg
+```
+node main.js input output 0.9 true
+```
